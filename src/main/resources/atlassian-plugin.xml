@@ -3,26 +3,19 @@
         <description>${project.description}</description>
         <version>${project.version}</version>
         <vendor name="${project.organization.name}" url="${project.organization.url}" />
-        <param name="plugin-icon">images/pluginIcon.png</param>
-        <param name="plugin-logo">images/pluginLogo.png</param>
-        <param name="plugin-banner">images/banner.png</param>
+        <param name="plugin-icon">images/github-status/pluginIcon.png</param>
+        <param name="plugin-logo">images/github-status/pluginLogo.png</param>
+        <param name="plugin-banner">images/github-status/banner.png</param>
     </plugin-info>
 
     <!-- add our i18n resource -->
     <resource type="i18n" name="i18n" location="bamboo-github-status"/>
 
-    <preStageAction key="gitHubStatusPreStage" class="tools.redfox.bamboo.github.status.action.GitHubStatusPreStage" />
-    <postStageAction key="gitHubStatusPostStage" class="tools.redfox.bamboo.github.status.action.GitHubStatusPostStage" />
+    <preStageAction key="tools.redfox.github-status.listeners.pre" class="tools.redfox.bamboo.github.status.action.GitHubStatusPreStage" />
+    <postStageAction key="tools.redfox.github-status.listeners.stage.post" class="tools.redfox.bamboo.github.status.action.GitHubStatusPostStage" />
 
-    <additionalBuildConfigurationPlugin key="configuration" class="tools.redfox.bamboo.github.status.build.config.Configuration">
+    <additionalBuildConfigurationPlugin key="tools.redfox.github-status.config.plan" class="tools.redfox.bamboo.github.status.build.config.Configuration">
         <resource type="freemarker" name="edit" location="templates/edit.ftl" />
     </additionalBuildConfigurationPlugin>
 
-    <!-- add our web resources -->
-    <web-resource key="bamboo-github-status-resources" name="bamboo-github-status Web Resources">
-        <dependency>com.atlassian.auiplugin:ajs</dependency>
-        <resource type="download" name="images/" location="/images"/>
-        <context>bamboo-github-status</context>
-    </web-resource>
-    
 </atlassian-plugin>

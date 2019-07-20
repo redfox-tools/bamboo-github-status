@@ -4,13 +4,13 @@
         <product name="bamboo" min="6.8" max="6.9"/>
     </compatibility>
     <!-- Describe your app logo and banner. The banner is only displayed in the UPM. -->
-    <logo image="images/01_logo.jpg"/>
-    <banner image="images/02_banner.jpg"/>
+    <logo image="images/github-status/pluginLogo.png"/>
+    <banner image="images/github-status/banner.png"/>
     <!-- Describe highlight and cropped highlight image assets, in order. -->
 
     <highlights>
-        <highlight image="images/screen_1.jpg" cropped="images/screen_1.jpg"/>
-        <highlight image="images/screen_2.jpg" cropped="images/screen_2.jpg"/>
-        <highlight image="images/screen_3.jpg" cropped="images/screen_3.jpg"/>
+        <highlight image="images/github-status/screen_1.png" cropped="images/github-status/screen_1.png"/>
+        <highlight image="images/github-status/screen_2.png" cropped="images/github-status/screen_2.png"/>
+        <highlight image="images/github-status/screen_3.png" cropped="images/github-status/screen_3.png"/>
     </highlights>
 </atlassian-plugin-marketing>
