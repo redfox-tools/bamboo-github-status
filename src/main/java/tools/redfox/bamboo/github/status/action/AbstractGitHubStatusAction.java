@@ -32,10 +32,9 @@ abstract class AbstractGitHubStatusAction {
     }
 
     void pushUpdate(StageExecution stageExecution, GHCommitState status, String description) {
+        ImmutableChain chain = getChain(stageExecution);
         ChainExecution chainExecution = stageExecution.getChainExecution();
         PlanResultKey planResultKey = chainExecution.getPlanResultKey();
-        PlanKey planKey = planResultKey.getPlanKey();
-        ImmutableChain chain = (ImmutableChain) planManager.getPlanByKey(planKey);
 
         assert chain != null;
         GithubStatusBuildConfiguration config = GithubStatusBuildConfiguration.from(chain.getBuildDefinition().getCustomConfiguration());
@@ -67,6 +66,13 @@ abstract class AbstractGitHubStatusAction {
 
     void pushUpdate(StageExecution stageExecution, GHCommitState status) {
         pushUpdate(stageExecution, status, null);
+    }
+
+    protected ImmutableChain getChain(StageExecution stageExecution) {
+        ChainExecution chainExecution = stageExecution.getChainExecution();
+        PlanResultKey planResultKey = chainExecution.getPlanResultKey();
+        PlanKey planKey = planResultKey.getPlanKey();
+        return (ImmutableChain) planManager.getPlanByKey(planKey);
     }
 
     private boolean shouldUpdateRepo(ImmutableChain chain, final PlanRepositoryDefinition repo, GithubStatusBuildConfiguration config) {

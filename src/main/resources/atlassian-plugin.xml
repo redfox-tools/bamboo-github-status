@@ -11,11 +11,14 @@
     <!-- add our i18n resource -->
     <resource type="i18n" name="i18n" location="bamboo-github-status"/>
 
-    <preStageAction key="tools.redfox.github-status.listeners.pre" class="tools.redfox.bamboo.github.status.action.GitHubStatusPreStage" />
+    <preChainAction key="tools.redfox.webhooks.listeners.chain.pre" class="tools.redfox.bamboo.github.status.action.PreBuildAction" />
+    <postChainAction key="tools.redfox.webhooks.listeners.chain.post" class="tools.redfox.bamboo.github.status.action.PostBuildAction" />
+
+<!--    <preStageAction key="tools.redfox.github-status.listeners.pre" class="tools.redfox.bamboo.github.status.action.GitHubStatusPreStage" />-->
     <postStageAction key="tools.redfox.github-status.listeners.stage.post" class="tools.redfox.bamboo.github.status.action.GitHubStatusPostStage" />
 
     <additionalBuildConfigurationPlugin key="tools.redfox.github-status.config.plan" class="tools.redfox.bamboo.github.status.build.config.Configuration">
-        <resource type="freemarker" name="edit" location="templates/edit.ftl" />
+        <resource type="freemarker" name="edit" location="templates/tools/redfox/github-status/edit.ftl" />
     </additionalBuildConfigurationPlugin>
 
 </atlassian-plugin>
